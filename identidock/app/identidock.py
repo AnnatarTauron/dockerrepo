@@ -15,7 +15,7 @@ def mainpage():
     name = default_name
 
     if request.method == 'POST':
-        name = request.form['name']
+        name = html.escape( request.form['name'], quote=True )
     salted_name = salt + name
     name_hash = hashlib.sha256( salted_name.encode() ).hexdigest()
 
